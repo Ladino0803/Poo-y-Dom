@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador de Tareas - Hello Kitty Style</title>
+    <link rel="stylesheet" href="estilo.css"> <!-- Vincula el CSS -->
+</head>
+<body>
+    <h1>Administrador de Tareas</h1>
+    <form id="formularioTarea">
+        <input type="text" id="nombreTarea" placeholder="Nombre de la tarea" required>
+        <input type="text" id="personaAsignada" placeholder="Persona asignada" required>
+        <button type="submit">Agregar Tarea</button>
+    </form>
+    <ul id="listaTareas"></ul> <!-- Lista para mostrar las tareas -->
+
+    <script>
+        class AdministradorDeTareas {
+            constructor(listaId) {
+                this.lista = document.getElementById(listaId);
+                this.tareas = [];
+            }
+
+            agregarTarea(nombre, persona) {
+                const tarea = { nombre, persona };
+                this.tareas.push(tarea);
+                this.mostrarTareas();
+            }
+
+            modificarTarea(index, nuevoNombre, nuevaPersona) {
+                if (index >= 0 && index < this.tareas.length) {
+                    this.tareas[index].nombre = nuevoNombre;
+                    this.tareas[index].persona = nuevaPersona;
+                    this.mostrarTareas();
+                }
+            }
+
+            eliminarTarea(index) {
+                if (index >= 0 && index < this.tareas.length) {
+                    this.tareas.splice(index, 1);
+                    this.mostrarTareas();
+                }
+            }
+
+            mostrarTareas() {
+                this.lista.innerHTML = ''; // Limpiar la lista antes de mostrar
+                this.tareas.forEach((tarea, index) => {
+                    const li = document.createElement('li');
+                    li.textContent = `${tarea.nombre} - Asignada a: ${tarea.persona}`;
+
+                    // Contenedor para botones
+                    const botonContainer = document.createElement('div');
+                    botonContainer.classList.add('boton-container');
+
+                    // Botón de Editar
+                    const btnEditar = document.createElement('button');
+                    btnEditar.textContent = 'Editar';
+                    btnEditar.onclick = () => this.editarTarea(index);
+
+                    // Botón de Eliminar
+                    const btnEliminar = document.createElement('button');
+                    btnEliminar.textContent = 'Eliminar';
+                    btnEliminar.onclick = () => this.eliminarTarea(index);
+
+                    // Agregar botones al contenedor
+                    botonContainer.appendChild(btnEditar);
+                    botonContainer.appendChild(btnEliminar);
+
+                    // Añadir contenedor de botones al elemento de la lista
+                    li.appendChild(botonContainer);
+                    this.lista.appendChild(li);
+                });
+            }
+
+            editarTarea(index) {
+                const nuevoNombre = prompt("Nuevo nombre de la tarea:", this.tareas[index].nombre);
+                const nuevaPersona = prompt("Nueva persona asignada:", this.tareas[index].persona);
+                this.modificarTarea(index, nuevoNombre, nuevaPersona);
+            }
+        }
+
+        const adminTareas = new AdministradorDeTareas('listaTareas');
+
+        document.getElementById('formularioTarea').addEventListener('submit', (e) => {
+            e.preventDefault(); // Evitar el envío del formulario
+            const nombre = document.getElementById('nombreTarea').value;
+            const persona = document.getElementById('personaAsignada').value;
+            adminTareas.agregarTarea(nombre, persona);
+            e.target.reset(); // Limpiar el formulario
+        });
+    </script>
+</body>
+</html>

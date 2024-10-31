@@ -1,0 +1,92 @@
+/* Fondo con estilo limpio y centrado */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f6f8fa;
+    color: #24292f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Encabezado */
+h1 {
+    font-size: 1.8em;
+    color: #0366d6;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Campo de texto de entrada de tarea */
+input[type="text"] {
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #d1d5da;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #0366d6;
+}
+    
+/* Botón para agregar tareas */
+button {
+    padding: 10px 15px;
+    margin-left: 10px;
+    background-color: #2ea44f;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #22863a;
+    transform: translateY(-2px);
+}
+
+/* Lista de tareas */
+ul {
+    margin-top: 20px;
+    padding-left: 0;
+    list-style-type: none;
+    width: 300px;
+}
+
+li {
+    padding: 15px;
+    margin-bottom: 8px;
+    background-color: #ffffff;
+    border: 1px solid #d1d5da;
+    border-radius: 6px;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    animation: slideIn 0.4s ease forwards;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+/* Animación para que las tareas aparezcan deslizándose */
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efecto de hover en las tareas */
+li:hover {
+    border-color: #0366d6;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+}

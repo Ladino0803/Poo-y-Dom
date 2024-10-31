@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planificador de Eventos</title>
+    <link rel="stylesheet" href="estilo.css"> <!-- Vincula el CSS -->
+</head>
+<body>
+    <h1>Planificador de Eventos</h1>
+    <form id="formularioEvento">
+        <input type="text" id="nombreEvento" placeholder="Nombre del Evento" required>
+        <input type="date" id="fechaEvento" required>
+        <input type="time" id="horaEvento" required>
+        <input type="text" id="lugarEvento" placeholder="Lugar" required>
+        <button type="submit">Agregar Evento</button>
+    </form>
+    <ul id="listaEventos"></ul> <!-- Lista para mostrar los eventos -->
+
+    <script src="script.js"></script> <!-- Vincula el JavaScript -->
+</body>
+</html>
+
+
